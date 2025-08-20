@@ -62,9 +62,42 @@ class ListaDobleEnlazada:
             actual.anterior = nuevo_nodo
             self.tamaño +=1
         
-    def extraer_posicion(posicion):
-        pass
-        
+    def extraer_posicion(self,posicion=None):
+        if self.esta_vacia():
+            raise IndexError("La lista está vacía")
+        if posicion is None:
+            posicion = self.tamaño - 1
+        if posicion < 0 or posicion >= self.tamaño:
+            raise IndexError("Posición fuera de rango")
+        if posicion == 0:
+            dato = self.cabeza.dato
+            if self.tamaño == 1:
+              self.cabeza = None
+              self.cola = None
+            else:
+                self.cabeza = self.cabeza.siguiente
+                self.cabeza.anterior = None
+            self.tamaño -= 1
+            return dato
+        if posicion == self.tamaño - 1:
+            dato = self.cola.dato
+            if self.tamaño == 1:
+                self.cabeza = None
+                self.cola = None
+            else:
+                self.cola = self.cola.anterior
+                self.cola.siguiente = None
+            self.tamaño -= 1
+            return dato
+        actual = self._obtener_nodo(posicion)
+        dato = actual.dato
+
+        actual.anterior.siguiente = actual.siguiente
+        actual.siguiente.anterior = actual.anterior
+
+        self.tamaño -= 1
+        return dato
+
     def copiar(self):
         copia = ListaDobleEnlazada()
         actual = self.cabeza
@@ -113,15 +146,6 @@ class ListaDobleEnlazada:
         for i in range(self.tamaño):
             yield actual.dato
             actual = actual.siguiente
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
