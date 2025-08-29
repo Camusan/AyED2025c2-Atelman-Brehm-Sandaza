@@ -4,7 +4,7 @@ Created on Thu Sep  1 14:00:21 2022
 @author: Catedra de Algoritmos y Estructura de Datos
 """
 
-from modules import ListaDobleEnlazada
+from modules.listadobleenlazada import ListaDobleEnlazada,Nodo
 import unittest
 import random
 
@@ -178,7 +178,7 @@ class Test_LDE(unittest.TestCase):
             valor = nodo_anterior.dato
         self.assertEqual(valor, 180)
 
-    def test_insertar_interior(self):
+    def test_insertar_interior(self):####Preguntar al profe si es correcto el test
         """
         pruebo insertar un ítem en una posición aleatoria
         de la LDE y compruebo que el elemento es insertado
@@ -210,7 +210,7 @@ class Test_LDE(unittest.TestCase):
         self.assertRaises(Exception, self.lde_2.insertar, 210, self.n_elementos + 10,
                           "La LDE debe arrojar excepcion al intentar insertar en posición mayor al tamaño")
 
-    def test_extraer_extremos(self):
+    def test_extraer_extremos(self):#####
         """
         pruebo extraer ítems al inicio y al final de la LDE
         con/sin parámetro, verifico el valor extraído y el tamaño
@@ -248,7 +248,7 @@ class Test_LDE(unittest.TestCase):
         # Verificamos que la lista este correctamente enlazada
         self.recorrer_lista(self.lde_3)
 
-    def test_extraer_interior(self):
+    def test_extraer_interior(self):#####
         """
         extraigo un elemento de una posición aleatoria de la lista
         con elementos no repetidos y compruebo que el mismo no permanece
@@ -280,7 +280,7 @@ class Test_LDE(unittest.TestCase):
             nodo_copia = nodo_copia.siguiente
             contador_pos += 1
 
-    def test_excepciones_extraer(self):
+    def test_excepciones_extraer(self):###
         """
         pruebo extraer en una lista vacía y en posiciones fuera
         de los límites de la LDE. Compruebo las excepciones
@@ -301,7 +301,7 @@ class Test_LDE(unittest.TestCase):
 
         # LDE no vacia
         self.assertRaises(Exception, self.lde_2.extraer, -50,
-                          "Extraer de una posicion negativa dede arrojar error")
+                          "Extraer de una posicion negativa debe arrojar error")
         self.assertRaises(Exception, self.lde_2.extraer, self.n_elementos + 50,
                           "Extraer de una posicion mayor al tamaño de la lista menos uno dede arrojar error")
 
@@ -344,7 +344,7 @@ class Test_LDE(unittest.TestCase):
             nodo_original = nodo_original.siguiente
             nodo_copia = nodo_copia.siguiente
 
-    def test_invertir(self):
+    def test_invertir(self):#Fallo
 
         """
         Creo una LDE con elementos aleatorios, realizo una copia de la misma,

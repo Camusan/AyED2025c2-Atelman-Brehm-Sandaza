@@ -6,9 +6,7 @@ class Nodo:
         self.siguiente=None
         self.anterior=None    
 
-    @property
-    def dato(self):
-        return self.dato
+    
         
 class ListaDobleEnlazada:   
     def __init__(self):
@@ -17,10 +15,7 @@ class ListaDobleEnlazada:
         self.tamaño=0
         
     def esta_vacia(self):
-        if self.tamaño == 0:
-            return True
-        else:
-            return False
+        return self.tamaño==0
 
     def agregar_al_inicio(self,item):
         nuevo_nodo= Nodo(item)
@@ -44,7 +39,7 @@ class ListaDobleEnlazada:
             self.cola=nuevo_nodo
         self.tamaño+=1
     
-    def insertar(self,dato,posicion):
+    def insertar(self,dato,posicion=None):#Salio error en el test al insertar en el interior 
         if posicion < 0 or posicion > self.tamaño:
             raise Exception("Posicion Invalida")
         if posicion == 0:
@@ -60,15 +55,17 @@ class ListaDobleEnlazada:
             nuevo_nodo.siguiente = actual
             actual.anterior.siguiente = nuevo_nodo
             actual.anterior = nuevo_nodo
-            self.tamaño +=1
-        
-    def extraer_posicion(self,posicion=None):
-        if self.esta_vacia():
-            raise IndexError("La lista está vacía")
+            self.tamaño += 1
+
+    def extraer_posicion(self,posicion=None):#Salio error en el test 
+        if self.esta_vacia()==True:
+            raise Exception("Extraer de una lista vacia deberia arrojar un error")
         if posicion is None:
             posicion = self.tamaño - 1
-        if posicion < 0 or posicion >= self.tamaño:
-            raise IndexError("Posición fuera de rango")
+        if posicion < 0 :
+            raise Exception("Extraer de una posicion negativa debe arrojar error")
+        if posicion > self.tamaño - 1:
+            raise Exception("Extraer de una posicion fuera de rango debe arrojar error")
         if posicion == 0:
             dato = self.cabeza.dato
             if self.tamaño == 1:
@@ -106,7 +103,7 @@ class ListaDobleEnlazada:
             actual = actual.siguiente
         return copia
 
-    def invertir(self):
+    def invertir(self): #Fallo el test 
         if self.esta_vacia():
             return self
         actual = self.cabeza
@@ -149,7 +146,6 @@ class ListaDobleEnlazada:
 
 
 if __name__ == "__main__":
-    nodo=Nodo(5.2)
-    print(nodo.dato)
-
-
+    lista=ListaDobleEnlazada()
+    
+    
