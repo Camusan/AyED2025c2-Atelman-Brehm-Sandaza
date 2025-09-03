@@ -57,24 +57,28 @@ class ListaDobleEnlazada:
             actual.anterior = nuevo_nodo
             self.tamaño += 1
 
-    def extraer_posicion(self,posicion=None):#Salio error en el test 
+    def extraer(self,posicion=None):#Salio error en el test 
         if self.esta_vacia()==True:
             raise Exception("Extraer de una lista vacia deberia arrojar un error")
         if posicion is None:
-            posicion = self.tamaño - 1
+            dato=self.cola.dato
+            if self.tamaño==1:
+                self.cabeza=None
+                self.cola=None
+            else:
+                self.cola=self.cola.anterior
+                self.cola.siguiente=None
+            self.tamaño-=1
+            return dato
         if posicion < 0 :
             raise Exception("Extraer de una posicion negativa debe arrojar error")
         if posicion > self.tamaño - 1:
             raise Exception("Extraer de una posicion fuera de rango debe arrojar error")
         if posicion == 0:
-            dato = self.cabeza.dato
-            if self.tamaño == 1:
-              self.cabeza = None
-              self.cola = None
-            else:
-                self.cabeza = self.cabeza.siguiente
-                self.cabeza.anterior = None
-            self.tamaño -= 1
+            dato=self.cabeza.dato
+            self.cabeza=self.cabeza.siguiente
+            self.cola=None 
+            self.tamaño-=1
             return dato
         if posicion == self.tamaño - 1:
             dato = self.cola.dato
@@ -143,6 +147,17 @@ class ListaDobleEnlazada:
         for i in range(self.tamaño):
             yield actual.dato
             actual = actual.siguiente
+
+
+
+    def __str__(self):
+        # sirve para poder mostrar el contenido de una LDE por consola con la función print
+        elementos = []
+        actual = self.cabeza
+        while actual is not None:
+            elementos.append(str(actual.dato))
+            actual = actual.siguiente
+        return " <-> ".join(elementos)
 
 
 if __name__ == "__main__":
