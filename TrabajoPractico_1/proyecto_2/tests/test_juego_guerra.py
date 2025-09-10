@@ -1,7 +1,6 @@
 from modules.juegoguerra import JuegoGuerra
 import unittest
 
-
 class TestJuegoGuerra(unittest.TestCase):
     
     def test_resulta_gana_jugador1(self):
