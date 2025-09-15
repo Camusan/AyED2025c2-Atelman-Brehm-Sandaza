@@ -1,5 +1,8 @@
 from matplotlib import pyplot as plt
 from modules.tiempos import medir_tiempos
+from modules.Burbuja import ordenamiento_burbuja
+from modules.quicksort import ordenamiento_quick
+from modules.radix_sort import ordenamiento_radix
 
 def graficar_tiempos(lista_metodos_ord):
     tamanos = [1, 10, 100, 200, 500, 700, 1000]
@@ -22,3 +25,7 @@ def graficar_tiempos(lista_metodos_ord):
     plt.legend() # para mostrar el nombre del método de ordenamiento. Es el "label" del metodo plot
     plt.grid() # cuadriculado
     plt.show()
+
+    if __name__ == '__main__':
+        lista_metodos_ord = [ordenamiento_burbuja, ordenamiento_quick, ordenamiento_radix]
+        graficar_tiempos(lista_metodos_ord)

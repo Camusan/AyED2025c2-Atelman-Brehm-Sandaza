@@ -13,6 +13,9 @@
 
 from random import randint
 
+
+
+
 def ordenamiento_burbuja(lista):
     for num_pasadas in range(len(lista)-1, 0, -1):
         for j in range(num_pasadas):
