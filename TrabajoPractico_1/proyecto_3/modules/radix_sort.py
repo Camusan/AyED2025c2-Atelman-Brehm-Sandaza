@@ -1,5 +1,10 @@
+#Utiliza un algoritmo de counting sort y toma las informaciones de las claves para ordenar(los numeros en este caso)
+#Para ello usa los digitos de los numeros, empezando por el menos significativo, osea de unidad a decena a centena,etc.
+#Orden de complejidad es 
+
+
 def ordenamiento_radix(una_lista):
-    max_digito=max(una_lista)#Obtenemos el numero mas grande y lo vamos diviviendo por 10 cada vez
+    max_digito=max(una_lista)#Obtenemos el numero mas grande de la lista para saber la cantidad de digitos que tiene
     exp=1#Empieza en 1 y lo vamos multiplicando por 10, pasando de unidades a decenas y cenetnas, ect.
     lista_aux=una_lista.copy()
     while max_digito/exp>0:

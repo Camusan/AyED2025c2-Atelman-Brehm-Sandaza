@@ -18,4 +18,6 @@ def medir_tiempos(metodo_ord, tamanos):
         print(f"Tiempo de ordenamiento por seleccion para n={n}: {fin - inicio:.6f} segundos")
     
     return tiempos_ord_selecc
-    
+
+
+
