@@ -3,7 +3,6 @@ from matplotlib import pyplot as plt
 from random import randint
 import time
 
-#elementos = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
 elementos = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
 tiempo_len = []
 tiempo_copiar= []
