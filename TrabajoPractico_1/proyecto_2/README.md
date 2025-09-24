@@ -1,25 +1,22 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# ❤️🔷🍀♠️ Juego de Guerra ❤️🔷🍀♠️
 
-Breve descripción del proyecto:
-
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+Breve descripción del proyecto: A partir del codigo del juego de guerra inplementamos la clase Mazo, el cual usa una lista doblemente enlazada para almacenar objetos tipo Carta y realizar las operaciones solicitadas. Para saber si la implementacion fue adecuada, utilizamos el test para la clase mazo y el test para el juego de guerra.
 
 ---
 ## 🏗Arquitectura General
-
-Explica brevemente cómo está organizado el código (funciones y/o clases)
-
-Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
-
-El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
-
+En la carpeta modules tenemos los siguientes archivos:
+   -carta: Define la clase Cata, que representa una carta individual del mazo, con atibutos como valor, palo y visibilidad.
+   -juegoguerra: Contiene la logica principal del juego, gestionando los mazos a los jugadores, el reparto de cartas, el desarrollo de los turnos y la determinacion del ganador o empate.
+   -LDE: Inplementa la estructura de una lista doblemente enlazada que permite almacenar y manipular nodos de forma eficiente, utilizada para gestionar las cartas en el mazo.
+   -mazo: Define la clase Mazo, que utiliza una ListaDobleEnlazada para almacenar objetos Carta y provee metodos para agregar, quitar y consultar cartas en el mazo. 
+En la carpeta tests tenemos los siguentes archivos:
+   -test_juego_guerra
+   -testMazo
+Los cuales utlizamos para poder verificar si nuestea implementacion de la clase Mazo fue correcta.
 ---
 ## 📑Dependencias
 
 1. **Python 3.x**
-2. **matplotlib** (`pip install matplotlib`)
-3. listar dependencias principales
-4. Dependencias listadas en requierements.txt
 
 ---
 ## 🚀Cómo Ejecutar el Proyecto
@@ -31,14 +28,9 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
    ```bash
    pip install -r requirements.txt
    ```
-   El archivo `requirements.txt` se encuentran en la carpeta [deps](./deps) del proyecto.
-
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
-
----
-
-> **Consejo**: Mantén el README **actualizado** conforme evoluciona el proyecto, y elimina (o añade) secciones según necesites. Esta plantilla es sólo un punto de partida general.
+- Atelman Maia
+- Brehn Mauro Xavier
+- Sandaza Iturraspe Camila
