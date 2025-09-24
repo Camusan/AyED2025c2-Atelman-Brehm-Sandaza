@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 from random import randint
 import time
 
+#elementos = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
 elementos = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
 tiempo_len = []
 tiempo_copiar= []
@@ -42,8 +43,8 @@ plt.plot(elementos, tiempo_len, marker='o', label='Tiempo de len()')
 plt.plot(elementos, tiempo_copiar, marker='o', label='Tiempo de copiar()')
 plt.plot(elementos, tiempo_invertir, marker='o', label='Tiempo de invertir()')
 plt.xlabel('Número de elementos en la lista')
-plt.ylabel('Tiempo en segundos)')
-plt.title('Comparación de cantidad de elpython modules\Graficacion.pyementos vs tiempo de ejecucion de los metodos len(), copiar() e invertir()')
+plt.ylabel('Tiempo en segundos')
+plt.title('Comparación de cantidad de elementos vs tiempo de ejecucion de los metodos len(), copiar() e invertir()')
 plt.legend()
 plt.grid()
 plt.show()    

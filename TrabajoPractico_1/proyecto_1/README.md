@@ -1,25 +1,34 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# 🐍Implementaciòn de una Lista Doblemente Enlazada 
 
-Breve descripción del proyecto:
-
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+Trabajamos en el TAD "Lista Doblemente Enlazada"(estructura de tipo lineal) en la cual usamos dos clases para su correcto funcionamiento, una es la lista propiamente dicha y la otra es el nodo es cual nos porporcioa la estructura interna de la misma,a su vez teniendo referencias  del nodo siguiente y del anterior.Una vez implementado esto comenzamos a crear opreaciones tipicas de un TAD como lo puede ser el ver un elemento, agregar o eliminarr.Las operaciones concretas que implementamos fueron las siguientes:
+   -esta_vacia()
+   -agregar_al_inicio(item)
+   -agregar_al_final(item)
+   -insertar(item, posicion)
+   -extraer(posicion)
+   -copiar()
+   -invertir()
+   -concatenar(Lista)
+   -__len__()
+   -__add__(Lista)
+   -__iter__()
+Por ultimo para saber si nuestros metodos funcionan ejecutamos sus respectivos test(buscamos testear las funciones principales) y tambien graficamos tres metodos para analisar su complejidad(variando la cantidad de elementos de una lista y observar su costo temporal)
 
 ---
 ## 🏗Arquitectura General
 
-Explica brevemente cómo está organizado el código (funciones y/o clases)
+-En la carpeta Modules tenemos los siguientes archivos:
+   _Problema1:En este sitio tenemos la implementacion del codigo respecto a la LDE con sus opeaciones tipicas 
+   _Graficacion:En este sitio implementamos un metodo para graficar los metodos len(),copiar() e invertir()
 
-Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
-
-El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
-
+-En la carpeta tests tenemos el siguiente archivo:
+   _testE1:Aqui testeamos las operaciones de nuestra lista doblemente enlazada 
 ---
 ## 📑Dependencias
 
 1. **Python 3.x**
 2. **matplotlib** (`pip install matplotlib`)
-3. listar dependencias principales
-4. Dependencias listadas en requierements.txt
+
 
 ---
 ## 🚀Cómo Ejecutar el Proyecto
@@ -36,9 +45,10 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+-Atelman Maia
+-Brehm Mauro Xavier 
+-Sandaza Iturraspe Camila 
 
----
 
-> **Consejo**: Mantén el README **actualizado** conforme evoluciona el proyecto, y elimina (o añade) secciones según necesites. Esta plantilla es sólo un punto de partida general.
+
+> 
