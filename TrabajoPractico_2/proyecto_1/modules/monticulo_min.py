@@ -1,9 +1,12 @@
-
-
+from paciente import Paciente
 class Monticulo_Min:
     def __init__(self):
         self.lista_monticulo=[None]
         self.tamaño_actual=0
+
+
+    def __iter__(self):
+        return iter(self.lista_monticulo[1:])  # Ignorar el primer elemento NoneS
 
     def raiz(self):#Seria paciente con mayor criticidad
         if self.tamaño_actual>=1:
@@ -61,16 +64,23 @@ class Monticulo_Min:
 
 if __name__ == "__main__":
     monticulo = Monticulo_Min()
-    monticulo.insertar_valor(5)
-    monticulo.insertar_valor(3)
-    monticulo.insertar_valor(8)
-    monticulo.insertar_valor(1)
-    monticulo.insertar_valor(4)
+    pac1=Paciente()
+    print(pac1.criticidad)
+    pac2=Paciente()
+    print(pac2.criticidad)
+    monticulo.insertar_valor(pac1.criticidad)
+    monticulo.insertar_valor(pac2.criticidad)
+    print("Raíz del montículo:", monticulo.raiz())  # Debería imprimir la criticidad menor
+    # monticulo.insertar_valor(5)
+    # monticulo.insertar_valor(3)
+    # monticulo.insertar_valor(8)
+    # monticulo.insertar_valor(1)
+    # monticulo.insertar_valor(4)
 
-    print("Raíz del montículo:", monticulo.raiz())  # Debería imprimir 1
+    # print("Raíz del montículo:", monticulo.raiz())  # Debería imprimir 1
 
-    print("Sacando la raíz:", monticulo.sacar_raiz())  # Debería imprimir 1
-    print("Nueva raíz del montículo:", monticulo.raiz())  # Debería imprimir 3
+    # print("Sacando la raíz:", monticulo.sacar_raiz())  # Debería imprimir 1
+    # print("Nueva raíz del montículo:", monticulo.raiz())  # Debería imprimir 3
 
-    print("Sacando la raíz:", monticulo.sacar_raiz())  # Debería imprimir 3
-    print("Nueva raíz del montículo:", monticulo.raiz())  # Debería imprimir 4
+    # print("Sacando la raíz:", monticulo.sacar_raiz())  # Debería imprimir 3
+    # print("Nueva raíz del montículo:", monticulo.raiz())  # Debería imprimir 4
