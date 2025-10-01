@@ -14,7 +14,7 @@ import random
 
 n = 20  # cantidad de ciclos de simulación
 
-cola_de_espera = list()
+cola_de_espera = Monticulo_Min()
 # Ciclo que gestiona la simulación
 for i in range(n):
     # Fecha y hora de entrada de un paciente
@@ -25,8 +25,14 @@ for i in range(n):
 
     # Se crea un paciente un paciente por segundo
     # La criticidad del paciente es aleatoria
-    paciente = pac.Paciente()
-    cola_de_espera.insertar_valor(paciente.criticidad)
+    paciente =Paciente()
+    print('*'*40)
+    print('Llega un nuevo paciente:', paciente)
+    print('*'*40)
+    cola_de_espera.insertar_valor(paciente)
+    for paciente in cola_de_espera:
+        paciente.prioirdad+=1
+    
 
     # Atención de paciente en este ciclo: en el 50% de los casos
     if random.random() < 0.5:
