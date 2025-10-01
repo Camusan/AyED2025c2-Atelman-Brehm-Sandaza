@@ -31,7 +31,7 @@ for i in range(n):
     print('*'*40)
     cola_de_espera.insertar_valor(paciente)
     for paciente in cola_de_espera:
-        paciente.prioirdad+=1
+        paciente.prioridad+=1
     
 
     # Atención de paciente en este ciclo: en el 50% de los casos
@@ -39,7 +39,7 @@ for i in range(n):
         # se atiende paciente que se encuentra al frente de la cola
         paciente_atendido = cola_de_espera.sacar_raiz()
         print('*'*40)
-        print('Se atiende el paciente:', paciente_atendido)
+        print('Se atiende el paciente:', paciente_atendido, 'con prioridad', paciente_atendido.prioridad)
         print('*'*40)
     else:
         # se continúa atendiendo paciente de ciclo anterior
@@ -50,7 +50,7 @@ for i in range(n):
     # Se muestran los pacientes restantes en la cola de espera
     print('Pacientes que faltan atenderse:', cola_de_espera.tamaño_actual)
     for paciente in cola_de_espera:
-        print('\t', paciente)
+        print('\t', paciente,paciente.prioridad)
     
     print()
     print('-*-'*15)

@@ -17,7 +17,7 @@ class Paciente:
         self.__apellido = apellidos[randint(0, n-1)]
         self.riesgo = choices(niveles_de_riesgo, probabilidades)[0]
         self.__descripcion = descripciones_de_riesgo[self.riesgo-1]
-        self.prioridad = None  # para posible uso futuro
+        self.prioridad = 0  # para posible uso futuro
 
     def get_nombre(self):
         return self.__nombre
