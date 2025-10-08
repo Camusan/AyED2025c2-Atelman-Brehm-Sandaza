@@ -14,36 +14,7 @@ class Monticulo_Min:
         else:
             return None
     
-    # def hijo_min(self,i):
-    #     "Devuelve el hijo menor del monticulo de minimo segun el valor en la posicion i"
-    #     if i > len(self.lista_monticulo)-1:
-    #         raise IndexError("El indice esta fuera de rango")
-    #     if i * 2 + 1 > self.tamaño_actual:
-    #         return i * 2
-    #     else:
-    #         if self.lista_monticulo[i*2].riesgo < self.lista_monticulo[i*2+1].riesgo:
-    #             return i * 2
-    #         else:
-    #             return i * 2 + 1
-            
-    # def infiltrar_abajo(self,i):
-    #     # se infiltra hacia abajo cuando el ancestro es mayor al hijo
-    #     while (i*2)<= self.tamaño_actual:
-    #         hijo_min= self.hijo_min(i)
-    #         if self.lista_monticulo[i].riesgo > self.lista_monticulo[hijo_min].riesgo:
-    #             tmp = self.lista_monticulo[i]
-    #             self.lista_monticulo[i] = self.lista_monticulo[hijo_min]
-    #             self.lista_monticulo[hijo_min] = tmp
-    #         i = hijo_min
-
-    # def infiltrar_arriba(self,i):
-    #     # se infiltra hacia arriba cuando el hijo es menor al ancestro
-    #     while i // 2 > 0:
-    #         if self.lista_monticulo[i].riesgo < self.lista_monticulo[i // 2].riesgo:
-    #             tmp = self.lista_monticulo[i // 2]
-    #             self.lista_monticulo[i // 2] = self.lista_monticulo[i]
-    #             self.lista_monticulo[i] = tmp
-    #         i = i // 2
+    
 
     def sacar_raiz(self):#Se atiende paciente con mayor criticidad
         '''Saca la raiz de un arbol y toma el ultimo valor agrega y lo pone en la raiz
