@@ -1,36 +1,68 @@
-class Temperatuas_DB:
+# módulo para organizar funciones o clases utilizadas en nuestro proyecto
+# Crear tantos módulos como sea necesario para organizar el código
+
+class NodoArbol:
+    def __init__(self,clave,valor=None,izquiero=None,derecho=None,padre=None):
+        self.clave=clave
+        self.valor=valor
+        self.hijo_izquiero_izquierdo
+        self.hijo_derecho=derecho
+        self.padre=padre
+        self.factor_equilibrio=0
+
+        def esHijoIzquierdo(self):
+            return self.padre != None and self.padre.hijo_izquierdo == self
+
+        def esHijoDerecho(self):
+            return self.padre != None and self.padre.hijo_derecho == self
+
+class ArbolAVL:
     def __init__(self):
-        pass
-    
-    def guardar_temperatura(temperatura,fecha):
-        #guarda la medida de temperatura asociada a la fecha.
-        pass
-
-    def devolver_temperatura(fecha): 
-        #devuelve la medida de temperatura en la fecha determinada.
-        pass
-
-    def max_temp_rango(fecha1, fecha2): 
-        #devuelve la temperatura máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2). 
-        #Esto no implica que los intervalos del rango deban ser fechas incluidas previamente en el árbol
-        pass
-    
-    def min_temp_rango(fecha1,fecha2):
-        pass
-    def temp_extremos_rango(fecha1, fecha2): 
-        #devuelve la temperatura mínima y máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2)
-        pass
+        self.raiz=None
+        self.tamaño=0
         
-    def borrar_temperatura(fecha):
-        #recibe una fecha y elimina del árbol la medición correspondiente a esa fecha.
-        pass
+    def insertar(self,clave,valor,nodoActual):
+        if clave<nodoActual.clave:
+            if nodoActual.hijo_izquiero != None:
+                self.insertar(clave,valor,nodoActual.hijo_izquiero)
+            else:
+                nodoActual.hijo_izquiero=NodoArbol(clave,valor,padre=nodoActual)
+                self.tamaño+=1
+                self.rebalancear(nodoActual.hijo_izquiero)
+        else:
+            if nodoActual.hijo_derecho != None:
+                self.insertar(clave,valor,nodoActual.hijo_derecho)
+            else:
+                nodoActual.hijo_derecho=NodoArbol(clave,valor,padre=nodoActual)
+                self.tamaño+=1
+                self.rebalancear(nodoActual.hijo_derecho)
 
-    def devolver_temperaturas(fecha1, fecha2):
-        #devuelve un listado de las mediciones de temperatura en el rango recibido por parámetro con el formato “dd/mm/aaaa: temperatura ºC”, ordenado por fechas. 
-        pass
-    def cantidad_muestras():
-        #devuelve la cantidad de muestras de temperatura de la DB.
-        pass
+    def rebalancear(self,nodo):#Sinomimo de actualizar 
+        if nodo.factor_equlibrio >1 or nodo.factor_equilibrio <-1:
+            self.requilibrar(nodo)
+            return
+        if nodo.padre != None:
+            if nodo.esHijoIzquierdo():
+                nodo.padre.factor_equilibrio+=1
+            elif nodo.esHijoDerecho():
+                nodo.padre.factor_equilibrio-=1
+            if nodo.padre.factor_equilibrio !=0:
+                self.rebalancear(nodo.padre)
 
-    def lector_de_archivos():
+    def requilibrar(self,nodo):
+        if nodo.factor_equilibrio<0:
+            if nodo.hijo_derecho.factor_equilibrio>0:
+                self.rotacionDerecha(nodo.hijo_derecho)
+                self.rotacionIzquierda(nodo)
+            else:
+                self.rotacionIzquierda(nodo)
+        elif nodo.factor_equilibrio>0:
+            if nodo.hijo_izquierdo.factor_equilibrio<0:
+                self.rotacionIzquierda(nodo.hijo_izquierdo)
+                self.rotacionDerecha(nodo)
+            else:
+                self.rotacionDerecha(nodo)
+
+    def rotacionIzquierda(self,nodo):
         pass
+                
