@@ -23,7 +23,7 @@ class Mazo:
             raise DequeEmptyError("El mazo está vacío")
         carta= self.mazo.extraer(0)
         if mostrar:
-            print(carta)
+            carta.visible=True
         return carta
 
 
