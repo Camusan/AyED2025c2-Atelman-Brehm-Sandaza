@@ -18,6 +18,16 @@ class NodoArbol:
 
     def esRaiz(self):
             return self.padre == None
+    
+    def obtenerHijo_izquierdo(self):
+        return self.hijo_izquierdo
+
+    def obtenerHijo_derecho(self):
+        return self.hijo_derecho
+
+    def obtenerValorRaiz(self):
+        return (self.clave, self.valor)
+
 
 class ArbolAVL:
     def __init__(self):
@@ -25,6 +35,9 @@ class ArbolAVL:
         self.tamaño=0
         
     def insertar(self,clave,valor,nodoActual):
+        if self.raiz==None:
+            self.raiz=NodoArbol(clave,valor)
+            self.tamaño+=1
         if clave<nodoActual.clave:
             if nodoActual.hijo_izquierdo != None:
                 self.insertar(clave,valor,nodoActual.hijo_izquierdo)
@@ -74,13 +87,32 @@ class ArbolAVL:
         elif clave>nodoActual.clave and nodoActual.hijo_derecho != None:
             return self.buscar(clave,nodoActual.hijo_derecho)
         return None
+
+    def obtener(self,clave):
+        if self.raiz:
+            res = self._obtener(clave,self.raiz)
+            if res:
+                return res.valor
+            else:
+                return None
+        else:
+            return None
+
+    def _obtener(self,clave,nodoActual):
+        if not nodoActual:
+            return None
+        elif nodoActual.clave == clave:
+            return nodoActual
+        elif clave < nodoActual.clave:
+            return self._obtener(clave,nodoActual.hijo_izquierdo)
+        else:
+            return self._obtener(clave,nodoActual.hijo_derecho)
     
-''' def inorden(self,arbol):
-        if arbol != None:
-            self.inorden(arbol.obtenerHijoIzquierdo())
+    def recorrer_arbol(self, arbol):
+        if arbol is not None:
+            self.recorrer_arbol(arbol.obtenerHijo_izquierdo())
             print(arbol.obtenerValorRaiz())
-            self.inorden(arbol.obtenerHijoDerecho())
-'''
+            self.recorrer_arbol(arbol.obtenerHijo_derecho())
 
     def eliminar(self,clave):
         if self.tamaño>1:
@@ -141,10 +173,48 @@ class ArbolAVL:
             nodo.valor = sucesor.valor
             self._eliminar(sucesor)
 
-    def _minimo(self, nodo):
+    def inorden_rango(self,nodo,fecha1, fecha2,resultados=None):
+            if resultados is None:
+                resultados=[]
+            if nodo is None:
+                return resultados
+            if nodo.clave > fecha1:
+                self.inorden_rango(nodo.obtenerHijo_izquierdo(), fecha1, fecha2, resultados)
+            if fecha1 <= nodo.clave <= fecha2:
+                resultados.append(f"{nodo.clave.strftime('%d/%m/%Y')}: {nodo.valor} ºC")
+            if nodo.clave < fecha2:
+                self.inorden_rango(nodo.obtenerHijo_derecho(), fecha1, fecha2, resultados)
+            return resultados
+
+    def _minimo(self,nodo):
         while nodo.hijo_izquierdo is not None:
             nodo = nodo.hijo_izquierdo
         return nodo
+
+  
+    def min_rango(self, nodo, fecha1, fecha2, min_temp=None):
+        if nodo is None:
+            return min_temp
+        if nodo.clave > fecha1:
+            min_temp = self.min_temp_rango(nodo.obtenerHijo_izquierdo(), fecha1, fecha2, min_temp)
+        if fecha1 <= nodo.clave <= fecha2:
+            if (min_temp is None) or (nodo.valor < min_temp):
+                min_temp = nodo.valor
+        if nodo.clave < fecha2:
+            min_temp = self.min_temp_rango(nodo.obtenerHijo_derecho(), fecha1, fecha2, min_temp)
+        return min_temp
+
+    def max_rango(self, nodo, fecha1, fecha2, max_temp=None):
+        if nodo is None:
+            return max_temp
+        if nodo.clave > fecha1:
+            max_temp = self.max_rango(nodo.obtenerHijo_izquierdo(), fecha1, fecha2, max_temp)
+        if fecha1 <= nodo.clave <= fecha2:
+            if (max_temp is None) or (nodo.valor > max_temp):
+                max_temp = nodo.valor
+        if nodo.clave < fecha2:
+            max_temp = self.max_rango(nodo.obtenerHijo_derecho(), fecha1, fecha2, max_temp)
+        return max_temp
 
     def rotarIzquierda(self,rotRaiz=NodoArbol):
         nuevaRaiz = rotRaiz.hijo_derecho
@@ -192,4 +262,7 @@ class ArbolAVL:
         nodo.hijo_derecho = self.rotarDerecha(nodo.hijo_derecho)
         return self.rotarIzquierda(nodo)
     
-   
+if __name__ == "__main__":
+    arbol=ArbolAVL()
+    arbol.insertar(50,)
+    

@@ -1,7 +1,8 @@
 from modules.AVL import ArbolAVL
 from modules.AVL import NodoArbol
+from datetime import datetime
 
-class Temperatuas_DB:
+class Temperaturas_DB:
     def __init__(self):
         self.arbol = ArbolAVL()
 
@@ -11,8 +12,9 @@ class Temperatuas_DB:
             for linea in archi:
                 try:
                     fecha, temp = linea.strip().split(";")
+                    fecha=datetime.strptime(fecha, "%d/%m/%Y")
                     temperatura=float(temp)
-                    self.arbol.insertar(fecha,temperatura)
+                    self.arbol.insertar(fecha,temperatura,self.arbol.raiz)
                 except ValueError:
                     print(f"Error al procesar la línea: {linea.strip()}")
 
@@ -28,23 +30,32 @@ class Temperatuas_DB:
     def max_temp_rango(self,fecha1, fecha2): 
         #devuelve la temperatura máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2). 
         #Esto no implica que los intervalos del rango deban ser fechas incluidas previamente en el árbol
-        pass
+        return self.arbol.max_rango(self.arbol.raiz, fecha1, fecha2)
     
     def min_temp_rango(self,fecha1,fecha2):
-        pass
+        return self.arbol.min_rango(self.arbol.raiz, fecha1, fecha2)
+    
     def temp_extremos_rango(self,fecha1, fecha2): 
         #devuelve la temperatura mínima y máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2)
-        pass
-        
+        min_temp = self.min_temp_rango(fecha1, fecha2)
+        max_temp = self.max_temp_rango(fecha1, fecha2)
+        return min_temp, max_temp
+
     def borrar_temperatura(self,fecha):
         #recibe una fecha y elimina del árbol la medición correspondiente a esa fecha.
-        pass
+        if self.arbol.buscar(fecha,self.arbol.raiz) == None:
+            raise ValueError("La fecha no existe en la base de datos")
+        self.arbol.eliminar(fecha)
 
-    def devolver_temperaturas(self,fecha1, fecha2):
-        #devuelve un listado de las mediciones de temperatura en el rango recibido por parámetro con el formato “dd/mm/aaaa: temperatura ºC”, ordenado por fechas. 
-        pass
+    def devolver_temperaturas(self, fecha1, fecha2):
+        self.arbol.inorden_rango(self.arbol.raiz,fecha1, fecha2)
+        #devuelve un listado de las mediciones de temperatura en el rango recibido por parámetro con el formato “dd/mm/aaaa: temperatura ºC”, ordenado por fechas.
     def cantidad_muestras(self):
         #devuelve la cantidad de muestras de temperatura de la DB.
         return self.arbol.tamaño
 
    
+
+if __name__ == "__main__":
+    base_de_datos=Temperaturas_DB()
+    base_de_datos.leer_archivo("muestras.txt")
