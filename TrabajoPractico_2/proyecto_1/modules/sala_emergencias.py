@@ -1,9 +1,9 @@
 # módulo para organizar funciones o clases utilizadas en nuestro proyecto
 # Crear tantos módulos como sea necesario para organizar el código
 # -*- coding: utf-8 -*-
-from monticulo_min import Monticulo_Min 
-from paciente import Paciente
-from cola_de_espera import Cola_de_Espera
+from modules.monticulo_min import Monticulo_Min 
+from modules.paciente import Paciente
+from modules.cola_de_espera import Cola_de_Espera
 """
 Sala de emergencias
 """
@@ -30,7 +30,7 @@ for i in range(n):
     print('*'*40)
     print('Llega un nuevo paciente:', paciente)
     print('*'*40)
-    cola_de_espera.insertar_paciente(paciente)
+    cola_de_espera.agregar(paciente)
     for paciente in cola_de_espera:
         paciente.prioridad+=1
     
@@ -38,7 +38,7 @@ for i in range(n):
     # Atención de paciente en este ciclo: en el 50% de los casos
     if random.random() < 0.5:
         # se atiende paciente que se encuentra al frente de la cola
-        paciente_atendido = cola_de_espera.atiende_paciente()
+        paciente_atendido = cola_de_espera.eliminar()
         print('*'*40)
         print('Se atiende el paciente:', paciente_atendido, 'con prioridad', paciente_atendido.prioridad)
         print('*'*40)

@@ -18,6 +18,7 @@ class Paciente:
         self.riesgo = choices(niveles_de_riesgo, probabilidades)[0]
         self.__descripcion = descripciones_de_riesgo[self.riesgo-1]
         self.prioridad = 0  # para posible uso futuro
+        
 
     def get_nombre(self):
         return self.__nombre
