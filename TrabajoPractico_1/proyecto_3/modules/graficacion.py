@@ -28,5 +28,5 @@ def graficar_tiempos(lista_metodos_ord):
     plt.show()
 
 if __name__ == '__main__':
-    lista_metodos_ord = [ordenamiento_burbuja, ordenamiento_radix, ordenamientoRapido]
+    lista_metodos_ord = [ordenamiento_burbuja, ordenamiento_radix, ordenamientoRapido, sorted]
     graficar_tiempos(lista_metodos_ord)
