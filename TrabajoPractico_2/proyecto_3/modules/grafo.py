@@ -17,3 +17,7 @@ class Grafo:
 
     def __iter__(self):
         return iter(self.listaVertices.values())
+
+
+if __name__=="__main__":
+    pass

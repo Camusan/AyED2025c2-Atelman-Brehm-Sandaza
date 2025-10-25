@@ -20,3 +20,8 @@ class Vertice:
 
     def obtenerPonderacion(self, vecino):
         return self.conectadoA[vecino]
+    
+if __name__=="__main__":
+    peligros=Vertice("peligros")
+    accidentes=Vertice("accidentes")
+    
