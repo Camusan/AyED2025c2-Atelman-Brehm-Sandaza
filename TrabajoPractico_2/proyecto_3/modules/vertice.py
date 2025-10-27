@@ -5,6 +5,9 @@ class Vertice:
     def __init__(self, clave):
         self.id = clave
         self.conectadoA = {}
+        self.distancia = float("inf")#Parametro que usaremos en dijkstra
+        self.predecesor = None
+        
 
     def agregarVecino(self, vecino, ponderacion=0):
         self.conectadoA[vecino] = ponderacion
@@ -20,6 +23,15 @@ class Vertice:
 
     def obtenerPonderacion(self, vecino):
         return self.conectadoA[vecino]
+    
+    def asignarDistancia(self, distancia:int):
+        self.distancia = distancia
+
+    def obtenerDistancia(self):
+        return self.distancia
+        
+    def asignarPredecesor(self, predecesor):
+        self.predecesor = predecesor
     
 if __name__=="__main__":
     peligros=Vertice("peligros")
