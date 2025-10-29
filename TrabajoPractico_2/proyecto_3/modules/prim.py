@@ -30,14 +30,21 @@ def prim(grafo:Grafo, inicio:Vertice):
 def distanciatotal(grafo:Grafo): # Suma las distancias del árbol de expansión mínima
     total = 0
     for v in grafo:
-        # usar getters para mantener consistencia con el resto del código
-        pre = v.obtenerPredecesor() if hasattr(v, 'obtenerPredecesor') else getattr(v, 'predecesor', None)
-        dist = v.obtenerDistancia() if hasattr(v, 'obtenerDistancia') else getattr(v, 'distancia', None)
-        # ignorar vértices que no pertenezcan al árbol (distancia infinita o sin predecesor)
-        if pre is not None and dist is not None:
-            if dist != sys.maxsize:
+        try:
+            pre = v.obtenerPredecesor()
+            dist = v.obtenerDistancia()
+            # Solo sumar si el vértice pertenece al árbol (tiene predecesor y distancia no infinita)
+            if pre is not None and dist != sys.maxsize:
                 total += dist
-
+        except AttributeError:
+            # Si no tiene los métodos requeridos, intentar acceder directamente a los atributos
+            try:
+                if v.predecesor is not None and v.distancia != sys.maxsize:
+                    total += v.distancia
+            except AttributeError:
+                # Si tampoco tiene los atributos, ignorar este vértice
+                continue
+    
     return total
 
 if __name__ == "__main__":
@@ -54,14 +61,17 @@ if __name__ == "__main__":
         print("Error: No se encontró la aldea 'Peligros' en el grafo")
     else:
         prim(grafo, vertice_inicio)
-        print("Distancia total de la red de comunicación:", distanciatotal(grafo))
+        print("Distancia total del recorrido de la noticia es de:", distanciatotal(grafo))
         print("\nPlan de distribución de noticias:")
         print("-" * 50)
         
         for aldea in grafo:
             # De quién recibe la noticia
-            predecesor = "Origen de la noticia" if aldea.predecesor is None else aldea.predecesor.obtenerId()
-            
+            if aldea.predecesor is None:
+                 predecesor = "Origen de la noticia" 
+            else:
+                predecesor = aldea.predecesor.obtenerId()
+
             # A quiénes debe enviar la noticia (solo los sucesores directos en el árbol)
             sucesores = []
             for otra_aldea in grafo:
@@ -75,5 +85,7 @@ if __name__ == "__main__":
                 print(f"Debe enviar a: {', '.join(sucesores)}")
             else:
                 print("No necesita reenviar la noticia")
+            
+    
 
     

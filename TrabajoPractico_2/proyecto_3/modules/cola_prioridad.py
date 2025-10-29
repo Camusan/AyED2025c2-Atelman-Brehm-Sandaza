@@ -34,7 +34,6 @@ class Cola_de_Prioridad:
         "que ya está en la cola, y por lo tanto ese vértice se mueve hacia el frente de la cola."
         verticeSiguiente.asignarDistancia(nuevaDistancia)
         # Buscar la posición del vértice en el montículo y filtrar hacia arriba.
-        # Esto es O(n); para O(log n) habría que mantener un mapa elemento->índice en Monticulo_Min.
         try:
             idx = self.cola.lista_monticulo.index(verticeSiguiente)
         except ValueError:
