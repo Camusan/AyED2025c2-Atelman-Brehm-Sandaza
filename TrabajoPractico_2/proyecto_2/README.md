@@ -1,25 +1,24 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# 🐍Base de Datos de Temperaturas 
 
 Breve descripción del proyecto:
 
-Ejemplo: “Este es un script en el que se comparan algoritmos de ordenamiento. Permite [describir funcionalidades principales].
+Para este proyecto se nos solicito implementar una base de datos capaz de manetener las mediciones de la temepartura realizadas en una cierta fecha ,pero que a su vez tenga el funcionamiento interno de un Arbol AVL.Dicha base de datos debe ser capaz que agregar, quitar y mostrar las  mediciones, tambien deberia mostrar la temepratura maxina y minima en un rango determinado de timpo(fecha1 y fecha2) y poder leer un archivo de mediciones y ser cargadas  a la base de datos 
 
 ---
 ## 🏗Arquitectura General
 
-Explica brevemente cómo está organizado el código (funciones y/o clases)
+En la carpeta Modules contamos con los siguientes archivos:
+-AVL:Aqui tenemos implementado nuestro arbol AVL con los metodos necesarios para su correcto funcionamiento 
+-Temperatura_BD:Esta clase tiene en su funcionamiento interno una instancia de un objeto AVL y llama a los metodos del mismo cuando debe trabajar con las mediciones 
 
-Las gráficas de los resultados están disponible en la carpeta [data](./data) del proyecto.
-
-El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
-
+En la carpeta Docs tenemos dos archivos:
+-Informe 2 TP2:Aqui tendremos todo nuestro analisis de los ordenes de complejidad que poseen los metodos de nuestra Base de Datos
+-TP N2:Tenemos a mano las consignas del TP2 para mayor comodidad y ver que requisitos debemos cumplir para cada ejercicio
 ---
 ## 📑Dependencias
 
 1. **Python 3.x**
-2. **matplotlib** (`pip install matplotlib`)
-3. listar dependencias principales
-4. Dependencias listadas en requierements.txt
+
 
 ---
 ## 🚀Cómo Ejecutar el Proyecto
@@ -36,9 +35,8 @@ El informe completo está disponible en la carpeta [docs](./docs) del proyecto.
 ---
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+- Brehm Mauro Xavier 
+- Sandaza Iturraspe Camila 
 
 ---
 
-> **Consejo**: Mantén el README **actualizado** conforme evoluciona el proyecto, y elimina (o añade) secciones según necesites. Esta plantilla es sólo un punto de partida general.
