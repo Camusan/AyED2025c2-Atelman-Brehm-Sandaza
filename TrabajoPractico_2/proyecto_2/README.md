@@ -34,7 +34,7 @@ En la carpeta Docs tenemos dos archivos:
 
 ---
 ## 🙎‍♀️🙎‍♂️Autores
-
+- Atelman Maia
 - Brehm Mauro Xavier 
 - Sandaza Iturraspe Camila 
 

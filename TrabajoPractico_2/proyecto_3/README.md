@@ -55,7 +55,7 @@ Este proyecto implementa un sistema para optimizar la red de comunicación entre
 
 ---
 ## 🙎‍♀️🙎‍♂️Autores
-
+- Atelman Maia
 - Brehm Mauro
 - Sandaza Iturraspe Camila 
 
