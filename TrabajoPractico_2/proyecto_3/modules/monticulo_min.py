@@ -1,7 +1,6 @@
 #Codigo extraido del problema 1 TP2 pero modificado para que el criterio de orden en el monticulo sea
 #la distancia entre aldeas vecinas 
 from modules.vertice import Vertice
-from grafo import Grafo
  
 class Monticulo_Min:
     def __init__(self):
@@ -18,7 +17,14 @@ class Monticulo_Min:
         else:
             return None
     
-    
+    def construirMonticulo(self, lista_valores):
+        "Construye un montículo mínimo a partir de una lista de valores."
+        self.tamaño_actual = len(lista_valores)
+        self.lista_monticulo = [None] + lista_valores[:]
+        i = self.tamaño_actual // 2
+        while i > 0:
+            self.infiltrar_abajo(i)
+            i -= 1
 
     def sacar_raiz(self):#Se atiende paciente con mayor criticidad
         '''Saca la raiz de un arbol y toma el ultimo valor agrega y lo pone en la raiz
@@ -61,8 +67,14 @@ class Monticulo_Min:
             hijo_min = self.hijo_min(i)
             actual = self.lista_monticulo[i]
             hijo = self.lista_monticulo[hijo_min]
-            if (actual.riesgo, -actual.prioridad) > (hijo.riesgo, -hijo.prioridad):
-                self.lista_monticulo[i], self.lista_monticulo[hijo_min] = hijo, actual
+            # comparar por la distancia asociada (criterio para Prim)
+            try:
+                if actual.obtenerDistancia() > hijo.obtenerDistancia():
+                    self.lista_monticulo[i], self.lista_monticulo[hijo_min] = hijo, actual
+            except Exception:
+                # si por alguna razón los elementos no exponen obtenerDistancia,
+                # caemos silenciosamente (no intercambiamos)
+                pass
             i = hijo_min
 
     def infiltrar_arriba(self, i):
@@ -70,6 +82,10 @@ class Monticulo_Min:
         while i // 2 > 0:
             actual = self.lista_monticulo[i]
             padre = self.lista_monticulo[i // 2]
-            if (actual.riesgo, -actual.prioridad) < (padre.riesgo, -padre.prioridad):
-                self.lista_monticulo[i], self.lista_monticulo[i // 2] = padre, actual
+            try:
+                if actual.obtenerDistancia() < padre.obtenerDistancia():
+                    self.lista_monticulo[i], self.lista_monticulo[i // 2] = padre, actual
+            except Exception:
+                # si no tienen obtenerDistancia, no intentar comparar
+                pass
             i = i // 2

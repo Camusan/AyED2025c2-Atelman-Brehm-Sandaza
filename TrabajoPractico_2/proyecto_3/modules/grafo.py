@@ -42,7 +42,7 @@ class Grafo:
     def cargar_aldeas(self, nombre_archivo):
         "Carga las aldeas y sus conexiones desde un archivo de texto."
         try:    
-            with open(nombre_archivo, 'r') as archivo:
+            with open(nombre_archivo, 'r',encoding="utf-8") as archivo:
                 for linea in archivo:
                     linea = linea.strip()
                     if not linea or ',' not in linea:

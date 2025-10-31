@@ -5,7 +5,7 @@ class Vertice:
     def __init__(self, clave):
         self.id = clave
         self.conectadoA = {}
-        self.distancia = float("inf")#Parametro que usaremos en dijkstra
+        self.distancia = float("inf")#Parametro que usaremos en prim
         self.predecesor = None
         
 
@@ -20,7 +20,7 @@ class Vertice:
 
     def obtenerId(self):
         return self.id
-
+   
     def obtenerPonderacion(self, vecino):
         return self.conectadoA[vecino]
     
