@@ -1,6 +1,7 @@
 from modules.AVL import ArbolAVL
 from modules.AVL import NodoArbol
 from datetime import datetime
+import os 
 
 class Temperaturas_DB:
     def __init__(self):
@@ -14,7 +15,7 @@ class Temperaturas_DB:
                     fecha, temp = linea.strip().split(";")
                     fecha=datetime.strptime(fecha, "%d/%m/%Y")
                     temperatura=float(temp)
-                    self.arbol.insertar(fecha,temperatura,self.arbol.raiz)
+                    self.arbol.insertar(fecha,temperatura)
                 except ValueError:
                     print(f"Error al procesar la línea: {linea.strip()}")
 
@@ -58,4 +59,6 @@ class Temperaturas_DB:
 
 if __name__ == "__main__":
     base_de_datos=Temperaturas_DB()
-    base_de_datos.leer_archivo("muestras.txt")
+    ruta_archivo = os.path.join( "data", "muestras.txt")
+    base_de_datos.leer_archivo(ruta_archivo)
+    print("Cantidad de muestras cargadas:",base_de_datos.cantidad_muestras())

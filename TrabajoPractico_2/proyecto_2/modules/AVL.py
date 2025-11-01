@@ -34,23 +34,27 @@ class ArbolAVL:
         self.raiz=None
         self.tamaño=0
         
-    def insertar(self,clave,valor,nodoActual):
-        if self.raiz==None:
-            self.raiz=NodoArbol(clave,valor)
-            self.tamaño+=1
-        if clave<nodoActual.clave:
-            if nodoActual.hijo_izquierdo != None:
-                self.insertar(clave,valor,nodoActual.hijo_izquierdo)
+    def insertar(self, clave, valor):
+        if self.raiz is None:
+            self.raiz = NodoArbol(clave, valor)
+            self.tamaño += 1
+        else:
+            self._insertar(clave, valor, self.raiz)
+
+    def _insertar(self, clave, valor, nodoActual):
+        if clave < nodoActual.clave:
+            if nodoActual.hijo_izquierdo is not None:
+                self._insertar(clave, valor, nodoActual.hijo_izquierdo)
             else:
-                nodoActual.hijo_izquierdo=NodoArbol(clave,valor,padre=nodoActual)
-                self.tamaño+=1
+                nodoActual.hijo_izquierdo = NodoArbol(clave, valor, padre=nodoActual)
+                self.tamaño += 1
                 self.rebalancear(nodoActual.hijo_izquierdo)
         else:
-            if nodoActual.hijo_derecho != None:
-                self.insertar(clave,valor,nodoActual.hijo_derecho)
+            if nodoActual.hijo_derecho is not None:
+                self._insertar(clave, valor, nodoActual.hijo_derecho)
             else:
-                nodoActual.hijo_derecho=NodoArbol(clave,valor,padre=nodoActual)
-                self.tamaño+=1
+                nodoActual.hijo_derecho = NodoArbol(clave, valor, padre=nodoActual)
+                self.tamaño += 1
                 self.rebalancear(nodoActual.hijo_derecho)
 
     def rebalancear(self,nodo):#Sinonimo de actualizar 
@@ -265,4 +269,3 @@ class ArbolAVL:
 if __name__ == "__main__":
     arbol=ArbolAVL()
     arbol.insertar(50,)
-    
