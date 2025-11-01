@@ -1,7 +1,7 @@
 from modules.monticulo_min import Monticulo_Min
 
 
-class Cola_de_Espera:
+class Cola_de_Prioridad:
     def __init__(self):
         self.cola = Monticulo_Min()
         self.tamaño_actual = 0

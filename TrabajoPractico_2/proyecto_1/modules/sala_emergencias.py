@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 from modules.monticulo_min import Monticulo_Min 
 from modules.paciente import Paciente
-from modules.cola_de_espera import Cola_de_Espera
+from modules.cola_de_prioridad import Cola_de_Prioridad
 """
 Sala de emergencias
 """
@@ -15,7 +15,7 @@ import random
 
 n = 20  # cantidad de ciclos de simulación
 
-cola_de_espera = Cola_de_Espera()
+cp = Cola_de_Prioridad()
 # Ciclo que gestiona la simulación
 for i in range(n):
     # Fecha y hora de entrada de un paciente
@@ -30,15 +30,15 @@ for i in range(n):
     print('*'*40)
     print('Llega un nuevo paciente:', paciente)
     print('*'*40)
-    cola_de_espera.agregar(paciente)
-    for paciente in cola_de_espera:
+    cp.agregar(paciente)
+    for paciente in cp:
         paciente.prioridad+=1
     
 
     # Atención de paciente en este ciclo: en el 50% de los casos
     if random.random() < 0.5:
         # se atiende paciente que se encuentra al frente de la cola
-        paciente_atendido = cola_de_espera.eliminar()
+        paciente_atendido = cp.eliminar()
         print('*'*40)
         print('Se atiende el paciente:', paciente_atendido, 'con prioridad', paciente_atendido.prioridad)
         print('*'*40)
@@ -49,8 +49,8 @@ for i in range(n):
     print()
 
     # Se muestran los pacientes restantes en la cola de espera
-    print('Pacientes que faltan atenderse:', cola_de_espera.tamaño_actual)
-    for paciente in cola_de_espera:
+    print('Pacientes que faltan atenderse:', cp.tamaño_actual)
+    for paciente in cp:
         print('\t', paciente,paciente.prioridad)
     
     print()
