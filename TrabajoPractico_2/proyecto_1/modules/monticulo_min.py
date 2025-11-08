@@ -30,7 +30,7 @@ class Monticulo_Min:
         self.lista_monticulo.append(valor)
         self.tamaño_actual += 1
         self.infiltrar_arriba(self.tamaño_actual)
-        self.infiltrar_abajo(self.tamaño_actual)
+        
 
 
     def hijo_min(self, i):
@@ -47,24 +47,17 @@ class Monticulo_Min:
             else:
                 return i * 2 + 1
 
-    def infiltrar_abajo(self, i):
-        # se infiltra hacia abajo cuando el ancestro es mayor al hijo
-        while (i*2) <= self.tamaño_actual:
-            hijo_min = self.hijo_min(i)
-            actual = self.lista_monticulo[i]
-            hijo = self.lista_monticulo[hijo_min]
-            if (actual.riesgo, -actual.prioridad) > (hijo.riesgo, -hijo.prioridad):
-                self.lista_monticulo[i], self.lista_monticulo[hijo_min] = hijo, actual
-            i = hijo_min
-
+    
     def infiltrar_arriba(self, i):
-      # se infiltra hacia arriba cuando el hijo es menor al ancestro
+        # se infiltra hacia arriba cuando el hijo es menor al ancestro
         while i // 2 > 0:
             actual = self.lista_monticulo[i]
             padre = self.lista_monticulo[i // 2]
             if (actual.riesgo, -actual.prioridad) < (padre.riesgo, -padre.prioridad):
                 self.lista_monticulo[i], self.lista_monticulo[i // 2] = padre, actual
             i = i // 2
+
+    
 
 
 if __name__ == "__main__":
