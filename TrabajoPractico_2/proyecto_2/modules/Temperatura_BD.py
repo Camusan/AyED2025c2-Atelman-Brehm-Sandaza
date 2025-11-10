@@ -8,6 +8,7 @@ class Temperaturas_DB:
         self.arbol = ArbolAVL()
 
     def leer_archivo(self,nombre_archivo):
+        "funciona"
         #lee el archivo de texto y carga las temperaturas en el árbol.
         with open(nombre_archivo,"r") as archi:
             for linea in archi:
@@ -20,13 +21,14 @@ class Temperaturas_DB:
                     print(f"Error al procesar la línea: {linea.strip()}")
 
 
-    def guardar_temperatura(self,temperatura,fecha):
+    def guardar_temperatura(self,fecha,temperatura):
         #guarda la medida de temperatura asociada a la fecha.
-        self.arbol.insertar(temperatura,fecha,self.arbol.raiz)
+        self.arbol.insertar(fecha,temperatura)
+        return "Se ha guardado la temperatura correctamente."
 
     def devolver_temperatura(self,fecha): 
         #devuelve la medida de temperatura en la fecha determinada.
-        self.arbol.buscar(fecha,self.arbol.raiz)
+        return self.arbol.buscar(fecha,self.arbol.raiz)
 
     def max_temp_rango(self,fecha1, fecha2): 
         #devuelve la temperatura máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2). 
@@ -43,6 +45,7 @@ class Temperaturas_DB:
         return min_temp, max_temp
 
     def borrar_temperatura(self,fecha):
+        "funciona"
         #recibe una fecha y elimina del árbol la medición correspondiente a esa fecha.
         if self.arbol.buscar(fecha,self.arbol.raiz) == None:
             raise ValueError("La fecha no existe en la base de datos")
@@ -52,6 +55,7 @@ class Temperaturas_DB:
         self.arbol.inorden_rango(self.arbol.raiz,fecha1, fecha2)
         #devuelve un listado de las mediciones de temperatura en el rango recibido por parámetro con el formato “dd/mm/aaaa: temperatura ºC”, ordenado por fechas.
     def cantidad_muestras(self):
+        "funciona"
         #devuelve la cantidad de muestras de temperatura de la DB.
         return self.arbol.tamaño
 
@@ -62,3 +66,8 @@ if __name__ == "__main__":
     ruta_archivo = os.path.join( "data", "muestras.txt")
     base_de_datos.leer_archivo(ruta_archivo)
     print("Cantidad de muestras cargadas:",base_de_datos.cantidad_muestras())
+    fecha1=datetime.strptime("01/01/2025", "%d/%m/%Y")
+    fecha2=datetime.strptime("03/01/2025", "%d/%m/%Y")
+    base_de_datos.devolver_temperaturas(fecha1, fecha2)
+    base_de_datos.borrar_temperatura(fecha1)
+    print("Cantidad de muestras después de borrar:",base_de_datos.cantidad_muestras())
