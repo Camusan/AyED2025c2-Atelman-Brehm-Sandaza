@@ -22,13 +22,18 @@ class Temperaturas_DB:
 
 
     def guardar_temperatura(self,fecha,temperatura):
+        "funciona"
         #guarda la medida de temperatura asociada a la fecha.
         self.arbol.insertar(fecha,temperatura)
         return "Se ha guardado la temperatura correctamente."
 
     def devolver_temperatura(self,fecha): 
+        "funciona"
         #devuelve la medida de temperatura en la fecha determinada.
-        return self.arbol.buscar(fecha,self.arbol.raiz)
+        if not isinstance(fecha, datetime):
+            raise TypeError('La fecha tiene que ser de tipo datetime')
+        return self.arbol.obtener(fecha)
+           
 
     def max_temp_rango(self,fecha1, fecha2): 
         #devuelve la temperatura máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2). 
@@ -66,8 +71,13 @@ if __name__ == "__main__":
     ruta_archivo = os.path.join( "data", "muestras.txt")
     base_de_datos.leer_archivo(ruta_archivo)
     print("Cantidad de muestras cargadas:",base_de_datos.cantidad_muestras())
-    fecha1=datetime.strptime("01/01/2025", "%d/%m/%Y")
-    fecha2=datetime.strptime("03/01/2025", "%d/%m/%Y")
-    base_de_datos.devolver_temperaturas(fecha1, fecha2)
-    base_de_datos.borrar_temperatura(fecha1)
-    print("Cantidad de muestras después de borrar:",base_de_datos.cantidad_muestras())
+    fecha1=datetime.strptime("01/01/2026", "%d/%m/%Y")
+    fecha2=datetime.strptime("03/01/2026", "%d/%m/%Y")
+    base_de_datos.guardar_temperatura(fecha1,25.5)
+    base_de_datos.guardar_temperatura(fecha2,30.2)
+    print("Temperatura en 01/01/2026:",base_de_datos.devolver_temperatura(fecha1))
+    print("Cantidad de muestras:",base_de_datos.cantidad_muestras())
+    print("Temperatura máxima entre 01/01/2026 y 03/01/2026:",base_de_datos.temp_extremos_rango(fecha1, fecha2))
+    # base_de_datos.devolver_temperaturas(fecha1, fecha2)
+    # base_de_datos.borrar_temperatura(fecha1)
+    # print("Cantidad de muestras después de borrar:",base_de_datos.cantidad_muestras())
