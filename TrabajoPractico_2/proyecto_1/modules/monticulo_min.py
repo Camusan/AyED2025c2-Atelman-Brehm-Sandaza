@@ -30,7 +30,7 @@ class Monticulo_Min:
         self.lista_monticulo.append(valor)
         self.tamaño_actual += 1
         self.infiltrar_arriba(self.tamaño_actual)
-        self.infiltrar_abajo(self.tamaño_actual)
+        
 
 
 
