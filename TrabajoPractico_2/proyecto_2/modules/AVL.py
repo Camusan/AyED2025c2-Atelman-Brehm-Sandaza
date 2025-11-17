@@ -122,15 +122,19 @@ class ArbolAVL:
 
     def eliminar(self,clave):
         if self.tamaño>1:
-           nodoEliminar=self.buscar(clave,self.raiz)
+           nodoEliminar=self._obtener(clave,self.raiz)
            if nodoEliminar:
+               valor_borrado=nodoEliminar.valor
                self._eliminar(nodoEliminar)
                self.tamaño-=1
+               return valor_borrado
            else:
                raise KeyError('Error, la clave no está en el árbol')
         elif self.tamaño==1 and self.raiz.clave==clave:
-            self.raiz=None
+            valor_borrado=self.raiz.valor
+            self.raiz=None 
             self.tamaño-=1
+            return valor_borrado
         else:
             raise KeyError('Error, la clave no está en el árbol')
     def __delitem__(self,clave):
@@ -272,4 +276,3 @@ if __name__ == "__main__":
     arbol=ArbolAVL()
     #rbol.insertar(50,10)
     #arbol.eliminar(50)
-    

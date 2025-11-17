@@ -36,14 +36,17 @@ class Temperaturas_DB:
            
 
     def max_temp_rango(self,fecha1, fecha2): 
+        "funciona"
         #devuelve la temperatura máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2). 
         #Esto no implica que los intervalos del rango deban ser fechas incluidas previamente en el árbol
         return self.arbol.max_rango(self.arbol.raiz, fecha1, fecha2)
     
     def min_temp_rango(self,fecha1,fecha2):
+        "funciona"
         return self.arbol.min_rango(self.arbol.raiz, fecha1, fecha2)
     
     def temp_extremos_rango(self,fecha1, fecha2): 
+        "funciona"
         #devuelve la temperatura mínima y máxima entre los rangos fecha1 y fecha2 inclusive (fecha1 < fecha2)
         min_temp = self.min_temp_rango(fecha1, fecha2)
         max_temp = self.max_temp_rango(fecha1, fecha2)
@@ -54,10 +57,12 @@ class Temperaturas_DB:
         #recibe una fecha y elimina del árbol la medición correspondiente a esa fecha.
         if self.arbol.buscar(fecha,self.arbol.raiz) == None:
             raise ValueError("La fecha no existe en la base de datos")
-        self.arbol.eliminar(fecha)
+        borrada = self.arbol.eliminar(fecha)
+        return borrada
 
     def devolver_temperaturas(self, fecha1, fecha2):
-        self.arbol.inorden_rango(self.arbol.raiz,fecha1, fecha2)
+        "funciona"
+        return self.arbol.inorden_rango(self.arbol.raiz,fecha1, fecha2)
         #devuelve un listado de las mediciones de temperatura en el rango recibido por parámetro con el formato “dd/mm/aaaa: temperatura ºC”, ordenado por fechas.
     def cantidad_muestras(self):
         "funciona"
@@ -75,7 +80,6 @@ if __name__ == "__main__":
     fecha2=datetime.strptime("03/01/2026", "%d/%m/%Y")
     base_de_datos.guardar_temperatura(fecha1,25.5)
     base_de_datos.guardar_temperatura(fecha2,30.2)
-    base_de_datos.leer_archivo(ruta_archivo)
     max_temp = base_de_datos.max_temp_rango(fecha1, fecha2)
     min_temp = base_de_datos.min_temp_rango(fecha1, fecha2)
     print("Temperatura mínima entre 01/01/2026 y 03/01/2026:", min_temp)
@@ -83,6 +87,8 @@ if __name__ == "__main__":
     print("Temperatura en 01/01/2026:",base_de_datos.devolver_temperatura(fecha1))
     print("Cantidad de muestras:",base_de_datos.cantidad_muestras())
     print("Temperatura máxima entre 01/01/2026 y 03/01/2026:",base_de_datos.temp_extremos_rango(fecha1, fecha2))
-    # base_de_datos.devolver_temperaturas(fecha1, fecha2)
-    # base_de_datos.borrar_temperatura(fecha1)
-    # print("Cantidad de muestras después de borrar:",base_de_datos.cantidad_muestras())
+    print("Tempreratura de la fecha 1 y de la fecha 2:",base_de_datos.devolver_temperaturas(fecha1, fecha2))
+    #Prueba de borrado:
+    #borrado = base_de_datos.borrar_temperatura(fecha1) 
+    #print("Temperatura borrada:", borrado)
+   #print("Cantidad de muestras despues de borrar una fecha:",base_de_datos.cantidad_muestras())    
