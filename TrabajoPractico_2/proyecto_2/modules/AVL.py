@@ -85,12 +85,13 @@ class ArbolAVL:
 
     def buscar(self,clave,nodoActual):
         if nodoActual.clave==clave:
-            return nodoActual
+            return nodoActual.valor
         elif clave<nodoActual.clave and nodoActual.hijo_izquierdo != None:
             return self.buscar(clave,nodoActual.hijo_izquierdo)
         elif clave>nodoActual.clave and nodoActual.hijo_derecho != None:
             return self.buscar(clave,nodoActual.hijo_derecho)
-        return None
+        if nodoActual is None:
+            return None
 
     def obtener(self,clave):
         if self.raiz:
@@ -111,6 +112,7 @@ class ArbolAVL:
             return self._obtener(clave,nodoActual.hijo_izquierdo)
         else:
             return self._obtener(clave,nodoActual.hijo_derecho)
+        
     
     def recorrer_arbol(self, arbol):
         if arbol is not None:
