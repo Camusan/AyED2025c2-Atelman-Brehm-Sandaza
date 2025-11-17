@@ -202,12 +202,12 @@ class ArbolAVL:
         if nodo is None:
             return min_temp
         if nodo.clave > fecha1:
-            min_temp = self.min_temp_rango(nodo.obtenerHijo_izquierdo(), fecha1, fecha2, min_temp)
+            min_temp = self.min_rango(nodo.obtenerHijo_izquierdo(), fecha1, fecha2, min_temp)
         if fecha1 <= nodo.clave <= fecha2:
             if (min_temp is None) or (nodo.valor < min_temp):
                 min_temp = nodo.valor
         if nodo.clave < fecha2:
-            min_temp = self.min_temp_rango(nodo.obtenerHijo_derecho(), fecha1, fecha2, min_temp)
+            min_temp = self.min_rango(nodo.obtenerHijo_derecho(), fecha1, fecha2, min_temp)
         return min_temp
 
     def max_rango(self, nodo, fecha1, fecha2, max_temp=None):
@@ -270,4 +270,6 @@ class ArbolAVL:
     
 if __name__ == "__main__":
     arbol=ArbolAVL()
-    arbol.insertar(50,)
+    #rbol.insertar(50,10)
+    #arbol.eliminar(50)
+    
