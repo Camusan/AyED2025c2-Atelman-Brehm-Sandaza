@@ -89,6 +89,6 @@ if __name__ == "__main__":
     print("Temperatura máxima entre 01/01/2026 y 03/01/2026:",base_de_datos.temp_extremos_rango(fecha1, fecha2))
     print("Tempreratura de la fecha 1 y de la fecha 2:",base_de_datos.devolver_temperaturas(fecha1, fecha2))
     #Prueba de borrado:
-    #borrado = base_de_datos.borrar_temperatura(fecha1) 
-    #print("Temperatura borrada:", borrado)
-   #print("Cantidad de muestras despues de borrar una fecha:",base_de_datos.cantidad_muestras())    
+    borrado = base_de_datos.borrar_temperatura(fecha1) 
+    print("Temperatura borrada:", borrado)
+    print("Cantidad de muestras despues de borrar una fecha:",base_de_datos.cantidad_muestras())    
